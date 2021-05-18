@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xml>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.Cursor?>
+
+<?import javafx.geometry.Insets?>
+
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Button?>
+
+<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="department.Controller">
+    <top>
+    	<MenuBar>
+    		<menus>
+            	<Menu text="Файл" style="-fx-cursor: hand;">
+                	<items>
+                		<MenuItem text="Новий місяць" style="-fx-pref-width: 200px;" onAction="#onNewMonth" />
+						<SeparatorMenuItem />
+						<MenuItem text="Вихід" onAction="#onClickExit" />
+					</items>
+				</Menu>
+				<Menu text="Таблиці" style="-fx-cursor: hand;">
+                	<items>
+                		<MenuItem text="Посади" style="-fx-pref-width: 200px;" onAction="#onShowPosts" />
+                		<MenuItem text="Відділи" onAction="#onShowDepartments" />
+                		<MenuItem text="Викладачі" onAction="#onShowTeachers" />
+					</items>
+				</Menu>
+			</menus>
+    	</MenuBar>
+    </top>
+	<center>
+		<BorderPane>
+			<top>
+			</top>
+			<center>
+				<ScrollPane fitToHeight="true" fitToWidth="true">
+					<content>
+						<GridPane fx:id="scrollContentPane" alignment="CENTER"/>
+					</content>
+				</ScrollPane>
+			</center>
+		</BorderPane>
+	</center>
+	<bottom>
+		<HBox alignment="CENTER">
+			<padding>
+				<Insets top="20" bottom="20"/>
+			</padding>
+			<Button fx:id="button" text="Додати запис в Базу Даних" BorderPane.alignment="CENTER" onAction="#onButtonAddClick">
+				<cursor>
+					<Cursor fx:constant="HAND" />
+				</cursor>
+			</Button>
+		</HBox>
+	</bottom>
+</BorderPane>
