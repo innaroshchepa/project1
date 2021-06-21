@@ -18,29 +18,37 @@
 <?import javafx.scene.control.SeparatorMenuItem?>
 <?import javafx.scene.control.Button?>
 
-<BorderPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="department.Controller">
+<BorderPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="department.Controller">
     <top>
     	<MenuBar>
     		<menus>
             	<Menu text="Файл" style="-fx-cursor: hand;">
                 	<items>
                 		<MenuItem text="Новий місяць" style="-fx-pref-width: 200px;" onAction="#onNewMonth" />
+                		<MenuItem fx:id="saveExcelMenuItem" text="Зберегти таблиці місяців .xslx" onAction="#onSaveTables" disable="true"/>
 						<SeparatorMenuItem />
 						<MenuItem text="Вихід" onAction="#onClickExit" />
 					</items>
 				</Menu>
 				<Menu text="Таблиці" style="-fx-cursor: hand;">
                 	<items>
-                		<MenuItem text="Посади" style="-fx-pref-width: 200px;" onAction="#onShowPosts" />
+                		<MenuItem fx:id="monthTablesMenuItem" text="Таблиці відділів" style="-fx-pref-width: 200px;" disable="true" onAction="#onShowAllTables" />
+                		<SeparatorMenuItem />
+                		<MenuItem text="Посади" onAction="#onShowPosts" />
                 		<MenuItem text="Відділи" onAction="#onShowDepartments" />
-                		<MenuItem text="Викладачі" onAction="#onShowTeachers" />
+                		<MenuItem text="Співробітники" onAction="#onShowTeachers" />
 					</items>
 				</Menu>
+				<Menu text="Допомога" style="-fx-cursor: hand;">
+                	<items>
+                		<MenuItem text="README" style="-fx-pref-width: 200px;" onAction="#openReadme" />
+					</items>
+				</Menu>				
 			</menus>
     	</MenuBar>
     </top>
 	<center>
-		<BorderPane>
+		<BorderPane fx:id="contentPane">
 			<top>
 			</top>
 			<center>

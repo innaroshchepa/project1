@@ -1,15 +1,49 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
-  <modelVersion>4.0.0</modelVersion>
-  <groupId>personnel_department</groupId>
-  <artifactId>personnel_department</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+		 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+		 xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+		 
+  	<modelVersion>4.0.0</modelVersion>
+  	<groupId>personnel_department</groupId>
+	<artifactId>personnel_department</artifactId>
+  	<version>0.0.1-SNAPSHOT</version>
+  	
+  	<properties>
+ 		<maven.compiler.source>1.8</maven.compiler.source>
+ 		<maven.compiler.target>1.8</maven.compiler.target>
+ 		
+ 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    	<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+	</properties>
+	
   	<dependencies>
-      	<dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>4.3.11.Final</version>
-        </dependency>
-        
+		<!-- https://mvnrepository.com/artifact/de.huxhorn.lilith/de.huxhorn.lilith.3rdparty.junique -->
+		<dependency>
+			<groupId>de.huxhorn.lilith</groupId>
+			<artifactId>de.huxhorn.lilith.3rdparty.junique</artifactId>
+			<version>1.0.4</version>
+		</dependency>
+  		
+  		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+
+		<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+		<dependency>
+			<groupId>org.apache.poi</groupId>
+			<artifactId>poi-ooxml</artifactId>
+			<version>4.1.2</version>
+		</dependency>
+		
+      	<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-core -->
+		<dependency>
+		    <groupId>org.hibernate</groupId>
+		    <artifactId>hibernate-core</artifactId>
+		    <version>4.3.11.Final</version>
+		</dependency>
+		
 		<!-- SQLite JDBC library -->
         <dependency>
             <groupId>org.xerial</groupId>
@@ -17,10 +51,11 @@
             <version>3.7.2</version>
         </dependency>
         
-        <dependency>
-		 	<groupId>com.enigmabridge</groupId>
-		 	<artifactId>hibernate4-sqlite-dialect</artifactId>
-		 	<version>0.1.2</version>
+        <!-- https://mvnrepository.com/artifact/com.enigmabridge/hibernate4-sqlite-dialect -->
+		<dependency>
+		    <groupId>com.enigmabridge</groupId>
+		    <artifactId>hibernate4-sqlite-dialect</artifactId>
+		    <version>0.1.2</version>
 		</dependency>
 		
         <!-- https://mvnrepository.com/artifact/dom4j/dom4j -->
@@ -37,4 +72,67 @@
 		    <version>1.2.17</version>
 		</dependency>
 	</dependencies>
+	<build>
+  		<plugins>
+			<plugin>
+	        	<groupId>org.apache.maven.plugins</groupId>
+	            <artifactId>maven-compiler-plugin</artifactId>
+	            <configuration>
+	                <source>1.8</source>
+	                <target>1.8</target>
+	        	</configuration>
+			</plugin>
+			<plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                	<finalName>app</finalName>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                     <appendAssemblyId>false</appendAssemblyId>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>make-assembly</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+			<plugin>
+				<groupId>com.akathist.maven.plugins.launch4j</groupId>
+				<artifactId>launch4j-maven-plugin</artifactId>
+				<version>1.7.10</version>
+				<executions>
+        			<execution>
+            			<id>l4j-gui</id>
+            			<phase>package</phase>
+						<goals>
+							<goal>launch4j</goal>
+						</goals>
+						<configuration>
+							<headerType>gui</headerType>
+							<outfile>target/PersonnelDepartment.exe</outfile>
+							<jar>target/app.jar</jar>
+							<errTitle>Відділ кадрів</errTitle>
+							<icon>src/main/resources/icon.ico</icon>
+                			<classPath>
+                    			<mainClass>department.Main</mainClass>
+                			</classPath>
+                			<jre>
+								<path>runtime/</path>
+                			</jre>
+                			<messages>
+                            	<jreVersionErr>jre error</jreVersionErr>
+                            </messages>
+                            <manifest>uac.xml</manifest>
+            			</configuration>
+        			</execution>
+    			</executions>
+			</plugin>
+		</plugins>
+	</build>
 </project>

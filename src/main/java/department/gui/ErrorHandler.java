@@ -3,12 +3,14 @@ package department.gui;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import department.Main;
 import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
 public class ErrorHandler {
 	
@@ -18,7 +20,10 @@ public class ErrorHandler {
 		Platform.runLater(() -> {
 			Alert alert = new Alert(AlertType.ERROR);
 			
-			alert.setTitle("Error");
+			Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+			stage.getIcons().add(Main.primaryStage().getIcons().get(0));
+			
+			alert.setTitle("Помилка");
 			alert.setHeaderText(e.getMessage());
 			
 			VBox dialogPaneContent = new VBox();
@@ -27,8 +32,7 @@ public class ErrorHandler {
 			TextArea textArea = new TextArea();
 			
 			textArea.setText(getStackTrace(e));
-			textArea.setPrefWidth(700);
-			textArea.setPrefHeight(400);
+			textArea.setPrefSize(700, 400);
 			
 			dialogPaneContent.getChildren().addAll(label, textArea);
 			

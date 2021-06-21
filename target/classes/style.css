@@ -1,0 +1,23 @@
+.grayCellStyle {
+	-fx-background-color: rgba(0, 0, 0, 0.4); 
+	-fx-border-color: rgba(0, 0, 0, 0.2); 
+	-fx-border-width: 0.1;
+}
+
+.preHolidayCellStyle {
+	-fx-background-color: rgba(40, 100, 100, 0.3); 
+	-fx-border-color: rgba(0, 0, 0, 0.2); 
+	-fx-border-width: 0.1;
+}
+
+.blackCellStyle {
+	-fx-background-color: rgba(0, 0, 0, 0.6); 
+	-fx-border-color: rgba(0, 0, 0, 1); 
+	-fx-border-width: 0.1;
+}
+
+.tab-pane {
+  	-fx-tab-min-width: 100px;
+  	-fx-tab-max-width: 100px;
+  	-fx-cursor: HAND;
+}

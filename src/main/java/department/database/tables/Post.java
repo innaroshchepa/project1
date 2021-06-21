@@ -14,11 +14,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import department.database.tables.annotation.Named;
+import department.database.tables.teacher.Teacher;
 
 @Named(name = "Посада")
 @Entity
 @Table(name = "posts")
-public class Post implements Serializable {
+public class Post implements Serializable, Containsable {
 	
 	private static final long serialVersionUID = -8756788345078147252L;
 	
@@ -31,7 +32,7 @@ public class Post implements Serializable {
 	@Column(name = "name", nullable = false)
 	private String name;
 	
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "post")
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "post")
     private Set<Teacher> teachers = new HashSet<>();
 	
 	public long getId() {
@@ -68,4 +69,9 @@ public class Post implements Serializable {
     public String toString() {
     	return name;
     }
+    
+	@Override
+	public boolean containsIgnoreCase(String searchPart) {
+		return name.toLowerCase().contains(searchPart);
+	}
 }

@@ -3,7 +3,7 @@ package department.gui.month;
 public enum Month {
 	
 	JANUARY("Січень", 31),
-	FEBRUARY("Лютий", 29), // 28
+	FEBRUARY("Лютий", 29),
 	MARCH("Березень", 31),
 	APRIL("Квітень", 30),
 	MAY("Травень", 31),

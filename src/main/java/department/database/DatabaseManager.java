@@ -4,7 +4,7 @@ import java.util.List;
 
 import department.database.tables.Department;
 import department.database.tables.Post;
-import department.database.tables.Teacher;
+import department.database.tables.teacher.Teacher;
 
 public interface DatabaseManager {
 	
@@ -15,6 +15,8 @@ public interface DatabaseManager {
 	void delete(Department department);
 	void delete(Teacher teacher);
 	void delete(Post post);
+	
+	Department getDepartmentById(long id);
 	
 	List<Department> collectDepartments();
 	List<Teacher> collectTeachers();
